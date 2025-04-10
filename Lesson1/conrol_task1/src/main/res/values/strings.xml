@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Conrol_task1</string>
+    <string name="header_text">Layout Type</string>
+    <string name="name_label">Name:</string>
+    <string name="name_value">Bermeg</string>
+    <string name="organisation_label">Organisation:</string>
+    <string name="organisation_value">Mirea</string>
+    <string name="phone_number">+7 (911) 111-11-11</string>
+    <string name="phone_type">(Mobile)</string>
+    <string name="save_button">SAVE</string>
+</resources>

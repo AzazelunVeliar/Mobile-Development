@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:padding="16dp"
+    android:id="@+id/main">
+
+    <TableRow>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите текст"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:layout_span="2" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ПЕРВАЯ КНОПКА" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ВТОРАЯ КНОПКА" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ТРЕТЬЯ КНОПКА" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ЧЕТВЁРТАЯ КНОПКА" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ПЯТАЯ КНОПКА" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ШЕСТАЯ КНОПКА" />
+    </TableRow>
+
+</TableLayout>
