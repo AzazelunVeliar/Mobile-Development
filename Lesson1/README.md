@@ -2,12 +2,19 @@
 
 Модуль LayoutTypes.
 
-В ходе работы были созданы три основных layout: LinearLayout, TableLayout,  ConstraintLayout. Для распределения информации внутри них использовались LinearLayout и TableRow соответственно, для размещения объектов внутри ConstraintLayout используется привязка к границам самого layout. После чего был реализован следующий xml файл activity_second, который должен выводиться при запуске приложения. Чтобы этого добиться, было изменено название xml файла в MainActivity.java c "activity_main" на "activity_second".
+В ходе работы были созданы три основных layout: LinearLayout, TableLayout,  ConstraintLayout. Для распределения информации внутри них использовались LinearLayout и TableRow соответственно, для размещения объектов внутри ConstraintLayout используется привязка к границам самого layout. 
+![constraintlayout](https://github.com/user-attachments/assets/435053cb-744f-417e-9a7e-1d714ec1e367)
+![linearlayout](https://github.com/user-attachments/assets/4f01d3e1-c75d-46d8-b49b-2f71363da455)
+![tablelayout](https://github.com/user-attachments/assets/61b8648f-c02d-46c9-9b3e-bc334e427724)
+После чего был реализован следующий xml файл activity_second, который должен выводиться при запуске приложения. Чтобы этого добиться, было изменено название xml файла в MainActivity.java c "activity_main" на "activity_second".
+![actsecondvert](https://github.com/user-attachments/assets/b2ed9bf5-c59d-4639-a414-579c24312590)
 Далее был реализован поворот экрана, при изменении положения устройства. Чтобы реализовать данный функционал, необходимо было создать новый файл activity_main.xml с изменённой ориентацией на landscape. После этого был создан второй файл с изменённой ориентацией уже для activity_second.xml. Теперь при запуске приложения в эмуляторе открывался интерфейс activity_second.xml, который менялся при повороте устройства.
-
+![actsecondhoriz](https://github.com/user-attachments/assets/07922de5-c569-41a6-af4e-3f5a44813bdc)
 Модуль control lesson.
 
-В данном модуле был создан "контакт" из телефонной книжки. Для его создания использовались такие элементы как: ImageView (изображение), несколько TextView и один Button. Для группировки элементов использовался LinearLayout. После создания основного экрана был создан альтернативный вид экрана в альбомной ориентации (activity_main.xml (land)).
+В данном модуле был создан "контакт" из телефонной книжки. Для его создания использовались такие элементы как: ImageView (изображение), несколько TextView и один Button. Для группировки элементов использовался LinearLayout.
+
+После создания основного экрана был создан альтернативный вид экрана в альбомной ориентации (activity_main.xml (land)).
 
 Модуль FindVievById.
 
