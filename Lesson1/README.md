@@ -24,5 +24,7 @@
 Модуль Button Clicker.
 
 В данном модуле было необходимо создать две кнопки и текст. Первая кнопка при нажатии меняет текст на "Мой номер в списке 26", вторая выодит такой же текст как уведомление. Для достижения данного результата был написан скрипт в MainActivity.java, который содержит в себе обработчик событий и метод OnClick, который меняет текст, на событие была подписана кнопка WhoIAm, для кнопки ItIsNotMe был создан отдельный метод onMyButtonClick, который использует Toast уведомления для вывода информации и отмечает CheckBox, меняя его значение на true с помощью метода setChecked, данный метод вызывает по событию On Click, которое было настроено через xml. 
+![btnclickstart](https://github.com/user-attachments/assets/f6e1501e-4e10-4a8c-a66a-9b85442682f5)
 ![whoiam](https://github.com/user-attachments/assets/6477ccc9-90ff-424b-9f7f-a8f46c17c827)
 ![itisnotme](https://github.com/user-attachments/assets/77bd5cac-1799-46ae-8bcf-adf325936f53)
+
