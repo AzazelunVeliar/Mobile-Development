@@ -13,13 +13,16 @@
 Модуль control lesson.
 
 В данном модуле был создан "контакт" из телефонной книжки. Для его создания использовались такие элементы как: ImageView (изображение), несколько TextView и один Button. Для группировки элементов использовался LinearLayout.
-
+![controltaskvert](https://github.com/user-attachments/assets/f2d3073c-3b06-4ced-9011-889e7fdfb373)
 После создания основного экрана был создан альтернативный вид экрана в альбомной ориентации (activity_main.xml (land)).
-
+![controltasthoriz](https://github.com/user-attachments/assets/cf64dae0-78f7-411f-9903-90b581d9e3ac)
 Модуль FindVievById.
 
 Было решено создать отдельный модуль для работы над заданием связанным с FindVievById. В данном модуле был написан скрипт в MainActivity.java, который при запуске приложения меняет текст в TextView, Button, оспользуя метод setText, а так же помечает CheckBox с помощью setChecked(true).
+![findviewbyid](https://github.com/user-attachments/assets/a584161d-a4e8-4dc1-9f33-88f12d42335f)
 
 Модуль Button Clicker.
 
 В данном модуле было необходимо создать две кнопки и текст. Первая кнопка при нажатии меняет текст на "Мой номер в списке 26", вторая выодит такой же текст как уведомление. Для достижения данного результата был написан скрипт в MainActivity.java, который содержит в себе обработчик событий и метод OnClick, который меняет текст, на событие была подписана кнопка WhoIAm, для кнопки ItIsNotMe был создан отдельный метод onMyButtonClick, который использует Toast уведомления для вывода информации и отмечает CheckBox, меняя его значение на true с помощью метода setChecked, данный метод вызывает по событию On Click, которое было настроено через xml. 
+![whoiam](https://github.com/user-attachments/assets/6477ccc9-90ff-424b-9f7f-a8f46c17c827)
+![itisnotme](https://github.com/user-attachments/assets/77bd5cac-1799-46ae-8bcf-adf325936f53)
