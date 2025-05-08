@@ -9,32 +9,31 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import ru.mirea.khudyakovma.mireaproject.R;
 
 public class MyPlayer extends Service {
-    public static final String CHANNEL_ID = "MireaMusicChannel";
+    public static final String CHANNEL_ID        = "MireaMusicChannel";
     public static final String EXTRA_TRACK_INDEX = "track_index";
-    public static final String ACTION_PAUSE = "PAUSE";
-    public static final String ACTION_RESUME = "RESUME";
+    public static final String ACTION_PAUSE      = "PAUSE";
+    public static final String ACTION_RESUME     = "RESUME";
 
     private MediaPlayer mediaPlayer;
-    private final int[] trackList = {
+    private final int[]    trackList   = {
             R.raw.rein_raus,
             R.raw.benzin,
             R.raw.giftig,
             R.raw.mein_teil
     };
     private final String[] trackTitles = {
-            "Rammstein - Rein Raus",
-            "Rammstein - Benzin",
-            "Rammstein - Giftig",
-            "Rammstein - Mein Teil"
+            "Rammstein – Rein Raus",
+            "Rammstein – Benzin",
+            "Rammstein – Giftig",
+            "Rammstein – Mein Teil"
     };
 
-    private int currentTrackIndex = 0;
-    private boolean isPaused = false;
+    private int     currentTrackIndex = 0;
+    private boolean isPaused          = false;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -47,15 +46,16 @@ public class MyPlayer extends Service {
         NotificationChannel channel = new NotificationChannel(
                 CHANNEL_ID,
                 "MIREA Audio Channel",
-                NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationManager.IMPORTANCE_LOW
+        );
         channel.setDescription("Music playback");
-        NotificationManagerCompat.from(this).createNotificationChannel(channel);
+        ((NotificationManager)getSystemService(NOTIFICATION_SERVICE))
+                .createNotificationChannel(channel);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String action = intent.getAction();
-
         if (ACTION_PAUSE.equals(action) && mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             isPaused = true;
@@ -64,7 +64,7 @@ public class MyPlayer extends Service {
             mediaPlayer.start();
             isPaused = false;
             updateNotification("Воспроизведение: " + trackTitles[currentTrackIndex], false);
-        } else {
+        } else if (intent.hasExtra(EXTRA_TRACK_INDEX)) {
             currentTrackIndex = intent.getIntExtra(EXTRA_TRACK_INDEX, 0);
             isPaused = false;
             playCurrentTrack();
@@ -73,12 +73,12 @@ public class MyPlayer extends Service {
     }
 
     private void playCurrentTrack() {
-        if (mediaPlayer != null) mediaPlayer.release();
-
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
         mediaPlayer = MediaPlayer.create(this, trackList[currentTrackIndex]);
         mediaPlayer.start();
         updateNotification("Играет: " + trackTitles[currentTrackIndex], false);
-
         mediaPlayer.setOnCompletionListener(mp -> {
             currentTrackIndex = (currentTrackIndex + 1) % trackList.length;
             playCurrentTrack();
@@ -86,25 +86,30 @@ public class MyPlayer extends Service {
     }
 
     private void updateNotification(String contentText, boolean isPausedNow) {
-        Intent pauseIntent = new Intent(this, MyPlayer.class);
-        pauseIntent.setAction(ACTION_PAUSE);
-        PendingIntent pausePending = PendingIntent.getService(this, 0, pauseIntent, PendingIntent.FLAG_IMMUTABLE);
-
-        Intent resumeIntent = new Intent(this, MyPlayer.class);
-        resumeIntent.setAction(ACTION_RESUME);
-        PendingIntent resumePending = PendingIntent.getService(this, 1, resumeIntent, PendingIntent.FLAG_IMMUTABLE);
-
+        Intent pauseIntent = new Intent(this, MyPlayer.class).setAction(ACTION_PAUSE);
+        PendingIntent pausePending = PendingIntent.getService(
+                this, 0, pauseIntent, PendingIntent.FLAG_IMMUTABLE
+        );
+        Intent resumeIntent = new Intent(this, MyPlayer.class).setAction(ACTION_RESUME);
+        PendingIntent resumePending = PendingIntent.getService(
+                this, 1, resumeIntent, PendingIntent.FLAG_IMMUTABLE
+        );
         NotificationCompat.Action action = isPausedNow
-                ? new NotificationCompat.Action.Builder(android.R.drawable.ic_media_play, "▶ Возобновить", resumePending).build()
-                : new NotificationCompat.Action.Builder(android.R.drawable.ic_media_pause, "⏸ Пауза", pausePending).build();
-
+                ? new NotificationCompat.Action.Builder(
+                android.R.drawable.ic_media_play, "▶ Возобновить", resumePending
+        ).build()
+                : new NotificationCompat.Action.Builder(
+                android.R.drawable.ic_media_pause, "⏸ Пауза", pausePending
+        ).build();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Музыкальный плеер")
                 .setContentText(contentText)
                 .setSmallIcon(R.mipmap.ic_launcher)
+                .setOngoing(true)
+                .setOnlyAlertOnce(true)
                 .addAction(action)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
-
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setPriority(NotificationCompat.PRIORITY_LOW);
         startForeground(1, builder.build());
     }
 
