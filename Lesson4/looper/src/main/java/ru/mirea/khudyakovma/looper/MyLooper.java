@@ -27,7 +27,7 @@ public class MyLooper extends Thread {
                 Log.d("MyLooper", "Принято сообщение: возраст = " + age + ", профессия = " + job);
 
                 try {
-                    Thread.sleep(age * 1000L); // задержка по возрасту
+                    Thread.sleep(age * 1000L);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
