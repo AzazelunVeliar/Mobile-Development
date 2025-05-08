@@ -2,8 +2,7 @@ package ru.mirea.khudyakovma.lesson4;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
 import ru.mirea.khudyakovma.lesson4.databinding.ActivityMainBinding;
 
@@ -16,14 +15,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.editTextMirea.setText("Мой номер по списку №26");
+        binding.buttonPlay.setOnClickListener(v ->
+                Toast.makeText(this, "Воспроизведение", Toast.LENGTH_SHORT).show());
 
-        binding.buttonMirea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(MainActivity.class.getSimpleName(), "onClickListener");
-                binding.textViewMirea.setText("Нажата кнопка!");
-            }
-        });
+        binding.buttonStop.setOnClickListener(v ->
+                Toast.makeText(this, "Остановка", Toast.LENGTH_SHORT).show());
     }
 }
