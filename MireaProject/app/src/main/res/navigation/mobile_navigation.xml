@@ -37,6 +37,21 @@
         android:name="ru.mirea.khudyakovma.mireaproject.ui.player.MediaPlayer"
         android:label="Проигрыватель"
         tools:layout="@layout/fragment_media_player" />
+    <fragment
+        android:id="@+id/nav_recorder"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.recorder.VoiceRecorder"
+        android:label="Диктофон"
+        tools:layout="@layout/fragment_voice_recorder" />
+    <fragment
+        android:id="@+id/nav_gyroscope"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.gyroscope.Gyroscope"
+        android:label="Уровень"
+        tools:layout="@layout/fragment_gyroscope" />
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.note.Notes"
+        android:label="Заметки"
+        tools:layout="@layout/fragment_notes" />
 
 
 </navigation>

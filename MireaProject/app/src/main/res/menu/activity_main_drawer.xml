@@ -25,6 +25,18 @@
         <item
             android:id="@+id/nav_player"
             android:title="Проигрыватель" />
+        <item
+            android:id="@+id/nav_recorder"
+            android:icon="@android:drawable/ic_btn_speak_now"
+            android:title="Диктофон" />
+        <item
+            android:id="@+id/nav_gyroscope"
+            android:title="Уровень" />
+        <item
+            android:id="@+id/nav_notes"
+            android:title="Заметки"/>
+
+
 
     </group>
 </menu>
