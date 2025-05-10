@@ -1,7 +1,9 @@
 package ru.mirea.khudyakovma.mireaproject.ui.note;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -24,6 +26,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,12 +46,16 @@ public class Notes extends Fragment {
     private final ArrayList<String> titles = new ArrayList<>();
     private final ArrayList<Uri> uris = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+    private SharedPreferences prefs;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentNotesBinding.inflate(inflater, container, false);
+        prefs = requireContext()
+                .getSharedPreferences("notes_prefs", Context.MODE_PRIVATE);
+        loadNotes();
 
         adapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_list_item_1, titles);
@@ -73,10 +83,12 @@ public class Notes extends Fragment {
                                             Uri.fromFile(photoFile))
                             );
                         }
-                        String name = binding.noteTitle.getText().toString().trim();
+                        String name = binding.noteTitle.getText()
+                                .toString().trim();
                         titles.add(name);
                         uris.add(Uri.fromFile(photoFile));
                         adapter.notifyDataSetChanged();
+                        saveNotes();
                     }
                 }
         );
@@ -134,6 +146,37 @@ public class Notes extends Fragment {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         cameraLauncher.launch(intent);
+    }
+
+    private void loadNotes() {
+        String json = prefs.getString("notes_json", "[]");
+        try {
+            JSONArray arr = new JSONArray(json);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                titles.add(obj.getString("title"));
+                uris.add(Uri.parse(obj.getString("uri")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveNotes() {
+        JSONArray arr = new JSONArray();
+        for (int i = 0; i < titles.size(); i++) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("title", titles.get(i));
+                obj.put("uri", uris.get(i).toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            arr.put(obj);
+        }
+        prefs.edit()
+                .putString("notes_json", arr.toString())
+                .apply();
     }
 
     @Override

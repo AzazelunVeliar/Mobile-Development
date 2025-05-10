@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_player,
                 R.id.nav_recorder,
                 R.id.nav_gyroscope,
-                R.id.nav_notes
+                R.id.nav_notes,
+                R.id.nav_profile,
+                R.id.nav_files
         ).setOpenableLayout(drawer).build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

@@ -52,6 +52,24 @@
         android:name="ru.mirea.khudyakovma.mireaproject.ui.note.Notes"
         android:label="Заметки"
         tools:layout="@layout/fragment_notes" />
-
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.profile.Profile"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_files"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.files.Files"
+        android:label="Редактор"
+        tools:layout="@layout/fragment_files" />
+    <fragment
+        android:id="@+id/nav_files_editor"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.files.TextEditor"
+        android:label="Редактор"
+        tools:layout="@layout/fragment_text_editor">
+        <argument
+            android:name="filePath"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
