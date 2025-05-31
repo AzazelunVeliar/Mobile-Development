@@ -41,6 +41,14 @@
         <item
             android:id="@+id/nav_files"
             android:title="Редактор" />
-
+        <item
+            android:id="@+id/nav_weather"
+            android:title="Погода"/>
     </group>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Выйти"
+        android:checkable="false"
+        android:layout_gravity="bottom" />
 </menu>

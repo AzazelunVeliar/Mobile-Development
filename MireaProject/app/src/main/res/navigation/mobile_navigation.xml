@@ -71,5 +71,9 @@
             android:name="filePath"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_weather"
+        android:name="ru.mirea.khudyakovma.mireaproject.ui.weather.WeatherFragment"
+        android:label="Погода"/>
 
 </navigation>
